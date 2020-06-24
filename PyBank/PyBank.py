@@ -29,8 +29,9 @@ with open(budget_data) as csvfile:
             totalprofits.append(int(row[1]))
 
     #Define Profit and Losses 
-    #printStr = f"Average Change: ${round(totalprofits/totalmonths,2):,}\n"
 
+    #printStr = f"Average Change: ${round(totalprofits/totalmonths,2):,}\n"
+    #print(printStr)
 
 
 # The difference between the profit values 
@@ -43,6 +44,7 @@ averChanges = round(sum(diff)/len(diff),2)
 # greatest increase 
 maxValue = max(diff)
 monMax = [i for i, j in enumerate(diff) if j == maxValue]
+
 # maxgreatestimum decrease
 minValue = min(diff)
 monMin = [i for i, j in enumerate(diff) if j == minValue]
@@ -57,5 +59,17 @@ print("-----------------------")
 print(f"Total Months: {len(totalmonths)}")
 print(f"Average changes: {averChanges}")
 print(f"Total: ${sum(totalprofits)}")
-print(f"greatest increase in profits at {totalmonths[monMax[0]]}, maximum: {maxValue}")
-print(f"greatest decrease at: {totalmonths[monMin[0]]}, minimum: {minValue}" )
+print(f"greatest increase in profits at {totalmonths[monMax[0]+1]}, maximum: {maxValue}")
+print(f"greatest decrease at: {totalmonths[monMin[0]+1]}, minimum: {minValue}" )
+
+with open("Financial_Analysis.txt","w") as file:
+    l = ("Financial_Analysis\n"
+    "-------------------------\n"
+    f"Total Months: {len(totalmonths)}\n"
+    f"-------------------------\n"
+    f"Average changes: {averChanges}\n"
+    f"Total: ${sum(totalprofits)}\n"
+    f"greatest increase in profits at {totalmonths[monMax[0]+1]}, maximum: {maxValue}\n"
+    f"greatest decrease at: {totalmonths[monMin[0]+1]}, minimum: {minValue}\n"
+    f"-------------------------")
+    file.write(l)
