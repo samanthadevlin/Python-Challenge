@@ -33,24 +33,29 @@ with open(budget_data) as csvfile:
 
 
 
-print("Financial Analysis")
-print("-----------------------")
-print(f"Total Months: {len(totalmonths)}")
-print(f"Total: ${sum(totalprofits)}")
-print(f"Total profits: ${sum(totalprofits)}")
-print(f"Total Months: {len(totalmonths)}")
-# The difference between two neighbood profit values 
+# The difference between the profit values 
 diff = [(j-i) for i, j in zip(totalprofits[:-1], totalprofits[1:])]
 
 # average changes
-averChanges = sum(diff)/len(diff)  
-## sum of the percentage increase or decrease
-print(f"Average changes: {averChanges}")
-## maximum increase 
+averChanges = round(sum(diff)/len(diff),2)  
+
+
+# greatest increase 
 maxValue = max(diff)
 monMax = [i for i, j in enumerate(diff) if j == maxValue]
-
+# maxgreatestimum decrease
 minValue = min(diff)
 monMin = [i for i, j in enumerate(diff) if j == minValue]
+
+
+
+
+
+
+print("Financial Analysis")
+print("-----------------------")
+print(f"Total Months: {len(totalmonths)}")
+print(f"Average changes: {averChanges}")
+print(f"Total: ${sum(totalprofits)}")
 print(f"greatest increase in profits at {totalmonths[monMax[0]]}, maximum: {maxValue}")
-print(f"greatest decrease at: {totalmonths[monMin[0]]}, minimum: {minValue}")
+print(f"greatest decrease at: {totalmonths[monMin[0]]}, minimum: {minValue}" )
